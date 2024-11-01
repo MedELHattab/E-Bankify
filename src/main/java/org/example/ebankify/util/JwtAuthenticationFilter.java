@@ -27,7 +27,7 @@ public class JwtAuthenticationFilter implements Filter {
 
         // Check if the request URI starts with /users/
         String requestURI = httpRequest.getRequestURI();
-        if (!requestURI.startsWith("/users/")) {
+        if (!requestURI.startsWith("/users")) {
             chain.doFilter(request, response); // Skip filter if not /users/*
             return;
         }

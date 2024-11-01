@@ -1,6 +1,6 @@
 package org.example.ebankify.model;
 
-public enum RoleEnum {
+public enum role_enum {
     ADMIN,
     USER,
     EMPLOYEE

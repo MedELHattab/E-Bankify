@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1730384091034-5
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  autoIncrement: true
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+            tableName: loans
+  - changeSet:
+      id: 1730384091034-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: status
+            tableName: loans
+  - changeSet:
+      id: 1730384091034-9
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: loan_id
+            tableName: loans
+        - dropColumn:
+            columnName: approved
+            tableName: loans
+  - changeSet:
+      id: 1730384091034-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: DOUBLE
+            columnName: interest_rate
+            tableName: loans
+            validate: true
+  - changeSet:
+      id: 1730384091034-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnDataType: DOUBLE
+            columnName: principal
+            tableName: loans
+            validate: true
+  - changeSet:
+      id: 1730384091034-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addPrimaryKey:
+            columnNames: id
+            constraintName: pk_loans
+            tableName: loans
+

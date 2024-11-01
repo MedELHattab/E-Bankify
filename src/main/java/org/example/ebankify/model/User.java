@@ -39,8 +39,8 @@ public class User {
     private int creditScore;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private RoleEnum role;
+    @Column(  nullable = false)
+    private role_enum role;
 
 
 

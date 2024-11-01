@@ -1,0 +1,197 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-loan-status-enum-table
+      author: ebankify
+      changes:
+        - createTable:
+            tableName: LoanStatusEnum
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    primaryKey: true
+
+  - changeSet:
+      id: 2-create-account-status-enum-table
+      author: ebankify
+      changes:
+        - createTable:
+            tableName: AccountStatusEnum
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    primaryKey: true
+        - insert:
+            tableName: AccountStatusEnum
+            columns:
+              - column:
+                  name: status
+                  value: "ACTIVE"
+              - column:
+                  name: status
+                  value: "BLOCKED"
+
+  - changeSet:
+      id: 3-create-role-enum-table
+      author: ebankify
+      changes:
+        - createTable:
+            tableName: RoleEnum
+            columns:
+              - column:
+                  name: role
+                  type: VARCHAR(20)
+                  constraints:
+                    primaryKey: true
+        - insert:
+            tableName: RoleEnum
+            columns:
+              - column:
+                  name: role
+                  value: "ADMIN"
+              - column:
+                  name: role
+                  value: "USER"
+              - column:
+                  name: role
+                  value: "EMPLOYEE"
+
+  - changeSet:
+      id: 4-create-transaction-type-enum-table
+      author: ebankify
+      changes:
+        - createTable:
+            tableName: TransactionTypeEnum
+            columns:
+              - column:
+                  name: type
+                  type: VARCHAR(20)
+                  constraints:
+                    primaryKey: true
+        - insert:
+            tableName: TransactionTypeEnum
+            columns:
+              - column:
+                  name: type
+                  value: "STANDARD"
+              - column:
+                  name: type
+                  value: "INSTANT"
+
+  - changeSet:
+      id: 5-create-transaction-status-enum-table
+      author: ebankify
+      changes:
+        - createTable:
+            tableName: TransactionStatusEnum
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    primaryKey: true
+        - insert:
+            tableName: TransactionStatusEnum
+            columns:
+              - column:
+                  name: status
+                  value: "PENDING"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+              - column:
+                  name: status
+                  value: "REJECTED"
+
+  - changeSet:
+      id: 6-drop-existing-columns
+      author: ebankify
+      preConditions:
+        - columnExists:
+            tableName: accounts
+            columnName: status
+        - columnExists:
+            tableName: users
+            columnName: role
+        - columnExists:
+            tableName: transactions
+            columnName: type
+        - columnExists:
+            tableName: transactions
+            columnName: status
+      changes:
+        - dropColumn:
+            tableName: accounts
+            columnName: status
+        - dropColumn:
+            tableName: users
+            columnName: role
+        - dropColumn:
+            tableName: transactions
+            columnName: type
+        - dropColumn:
+            tableName: transactions
+            columnName: status
+
+  - changeSet:
+      id: 7-add-foreign-key-references
+      author: ebankify
+      changes:
+        - addColumn:
+            tableName: accounts
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: accounts
+            baseColumnNames: status
+            constraintName: fk_account_status
+            referencedTableName: AccountStatusEnum
+            referencedColumnNames: status
+
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: role
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: users
+            baseColumnNames: role
+            constraintName: fk_user_role
+            referencedTableName: RoleEnum
+            referencedColumnNames: role
+
+        - addColumn:
+            tableName: transactions
+            columns:
+              - column:
+                  name: type
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: transactions
+            baseColumnNames: type
+            constraintName: fk_transaction_type
+            referencedTableName: TransactionTypeEnum
+            referencedColumnNames: type
+        - addForeignKeyConstraint:
+            baseTableName: transactions
+            baseColumnNames: status
+            constraintName: fk_transaction_status
+            referencedTableName: TransactionStatusEnum
+            referencedColumnNames: status
