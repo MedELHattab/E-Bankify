@@ -1,3 +1,4 @@
+
 package org.example.ebankify.service;
 
 import org.example.ebankify.dto.LoanDTO;
@@ -60,5 +61,12 @@ public class LoanServiceImpl implements LoanService {
         double denominator = Math.pow(1 + monthlyRate, loan.getTermMonths()) - 1;
 
         return numerator / denominator;
+    }
+    @Override
+    public void updateLoanStatus(Long loanId, LoanStatusEnum status) {
+        Loan loan = loanRepository.findById(loanId)
+                .orElseThrow(() -> new RuntimeException("Loan not found with ID: " + loanId));
+        loan.setStatus(status);
+        loanRepository.save(loan);
     }
 }

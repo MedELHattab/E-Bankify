@@ -22,6 +22,8 @@ public class AuthService {
 
     public boolean authenticate(User u) {
         User user = userRepository.findByEmail(u.getEmail()).get();
+        u.setId(user.getId());
+        u.setRole(user.getRole());
         return user != null && PasswordUtil.verifyPassword(u.getPassword(), user.getPassword());
     }
 }

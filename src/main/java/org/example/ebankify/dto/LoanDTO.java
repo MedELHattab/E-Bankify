@@ -1,3 +1,4 @@
+
 package org.example.ebankify.dto;
 
 import jakarta.validation.constraints.Min;
