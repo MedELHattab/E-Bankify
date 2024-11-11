@@ -1,5 +1,6 @@
 package org.example.ebankify.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.ebankify.model.User;
 import org.example.ebankify.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,18 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody User user, HttpSession session) {
         if (authService.authenticate(user)) {
-            return ResponseEntity.ok("Login successful");
+            // Store user in session
+            session.setAttribute("user", user);
+            return ResponseEntity.ok("Login successful with session");
         }
         return ResponseEntity.status(401).body("Invalid credentials");
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpSession session) {
+        session.invalidate(); // Destroy session
+        return ResponseEntity.ok("Logged out successfully");
     }
 }

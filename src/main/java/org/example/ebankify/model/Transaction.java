@@ -35,13 +35,6 @@ public class Transaction {
     @Column(nullable = false)
     private TransactionStatusEnum status;
 
-    public boolean execute() {
-        // Transaction execution logic
-        return true; // Placeholder
-    }
 
-    public void cancel() {
-        // Cancel transaction logic
-    }
 }
 
