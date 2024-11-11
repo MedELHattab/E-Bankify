@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731316268842-5
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+            tableName: loans
+  - changeSet:
+      id: 1731316268842-6
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: status
+            tableName: loans
+  - changeSet:
+      id: 1731316268842-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: approved
+            tableName: loans
+        - dropColumn:
+            columnName: interest_rate
+            tableName: loans
+        - dropColumn:
+            columnName: principal
+            tableName: loans
+  - changeSet:
+      id: 1731316268842-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    validateNullable: true
+                  name: interest_rate
+                  type: DOUBLE
+            tableName: loans
+  - changeSet:
+      id: 1731316268842-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    validateNullable: true
+                  name: principal
+                  type: DOUBLE
+            tableName: loans
+
