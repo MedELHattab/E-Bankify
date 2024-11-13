@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +24,15 @@ public class Transaction {
 
     @Column(nullable = false)
     private Double amount;
+
+    @Column(nullable = false)
+    private LocalDateTime transactionDate;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = false)
+    private Boolean isInterBank;
 
     @ManyToOne
     @JoinColumn(name = "source_account_id", nullable = false)

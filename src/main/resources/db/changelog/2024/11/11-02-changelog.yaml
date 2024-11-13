@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731351572056-7
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: description
+                  type: DOUBLE
+              - column:
+                  name: transaction_date
+                  type: DOUBLE
+            tableName: transactions
+  - changeSet:
+      id: 1731351572056-8
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: description
+            tableName: transactions
+  - changeSet:
+      id: 1731351572056-10
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: transaction_date
+            tableName: transactions
+  - changeSet:
+      id: 1731351572056-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: amount
+            tableName: transactions
+        - dropColumn:
+            columnName: status
+            tableName: transactions
+        - dropColumn:
+            columnName: type
+            tableName: transactions
+  - changeSet:
+      id: 1731351572056-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    validateNullable: true
+                  name: amount
+                  type: DOUBLE
+            tableName: transactions
+  - changeSet:
+      id: 1731351572056-4
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    validateNullable: true
+                  name: status
+                  type: VARCHAR(255)
+            tableName: transactions
+  - changeSet:
+      id: 1731351572056-6
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    validateNullable: true
+                  name: type
+                  type: VARCHAR(255)
+            tableName: transactions
+

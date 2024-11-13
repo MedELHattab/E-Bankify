@@ -9,3 +9,10 @@ spring:
     enabled: false
   jpa:
     show-sql: true
+
+  elasticsearch:
+    uris: http://localhost:9200
+    connection-timeout: 1s   # Optional: adjust if needed
+    socket-timeout: 30s      # Optional: adjust if needed
+    repositories:
+      enabled: true          # Enable Elasticsearch repositories

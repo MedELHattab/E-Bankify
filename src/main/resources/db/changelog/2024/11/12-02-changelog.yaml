@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731402830204-1
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: is_inter_bank
+                  type: BOOLEAN
+            tableName: transactions
+  - changeSet:
+      id: 1731402830204-2
+      author: Youcode
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addNotNullConstraint:
+            columnName: is_inter_bank
+            tableName: transactions
+

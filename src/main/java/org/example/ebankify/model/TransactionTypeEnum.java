@@ -4,4 +4,5 @@ public enum TransactionTypeEnum {
     STANDARD,
     INSTANT,
     PERMANENT,
+    CLASSIC
 }
