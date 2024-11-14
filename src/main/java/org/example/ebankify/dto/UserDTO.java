@@ -24,6 +24,10 @@ public class UserDTO {
     @UniqueEmail  // Custom unique email validator
     private String email;
 
+    @NotNull(message = "Password is required")
+//    @Min(value = 6, message = "Password must be at least 6")
+    private String password;
+
     @NotNull(message = "Age is required")
     @Min(value = 18, message = "Age must be at least 18")
     private Integer age;
@@ -46,6 +50,7 @@ public class UserDTO {
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
+                .password(user.getPassword())
                 .age(user.getAge())
                 .monthlyIncome(user.getMonthlyIncome())
                 .creditScore(user.getCreditScore())
@@ -59,6 +64,7 @@ public class UserDTO {
         user.setId(this.id);
         user.setName(this.name);
         user.setEmail(this.email);
+        user.setPassword(this.password);
         user.setAge(this.age);
         user.setMonthlyIncome(this.monthlyIncome);
         user.setCreditScore(this.creditScore);
