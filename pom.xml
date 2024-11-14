@@ -126,12 +126,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.sonarsource.sonarqube/sonar-plugin-api -->
         <dependency>
-            <groupId>org.sonarsource.sonarqube</groupId>
-            <artifactId>sonar-plugin-api</artifactId>
-            <version>9.3.0.51899</version>
-            <scope>provided</scope>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.11.0.3922</version>
         </dependency>
 
 
@@ -173,6 +171,14 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version> <!-- Try this version -->
+            </plugin>
+
+
         </plugins>
     </build>
 
