@@ -6,6 +6,8 @@ import org.example.ebankify.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
 
@@ -21,9 +23,15 @@ public class AuthService {
     }
 
     public boolean authenticate(User u) {
-        User user = userRepository.findByEmail(u.getEmail()).get();
+        Optional<User> optionalUser = userRepository.findByEmail(u.getEmail());
+        if (optionalUser.isEmpty()) {
+            return false; // Return false if user not found
+        }
+
+        User user = optionalUser.get();
         u.setId(user.getId());
         u.setRole(user.getRole());
-        return user != null && PasswordUtil.verifyPassword(u.getPassword(), user.getPassword());
+        return PasswordUtil.verifyPassword(u.getPassword(), user.getPassword());
     }
+
 }
